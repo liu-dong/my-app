@@ -11,23 +11,23 @@
             >
                 <van-cell>
                     <van-col span="3">序号</van-col>
-                    <van-col span="3">姓名</van-col>
+                    <van-col span="5">姓名</van-col>
                     <van-col span="3">年龄</van-col>
                     <van-col span="3">性别</van-col>
-                    <van-col span="3">手机号</van-col>
-                    <van-col span="3">邮箱</van-col>
-                    <van-col span="3">现住址</van-col>
-                    <van-col span="3">创建时间</van-col>
+                    <van-col span="6">手机号</van-col>
+<!--                    <van-col span="3">邮箱</van-col>-->
+<!--                    <van-col span="3">现住址</van-col>-->
+<!--                    <van-col span="3">创建时间</van-col>-->
                 </van-cell>
                 <van-cell v-for="(item,index) in list" :key="item.id">
                     <van-col span="3">{{ index + 1 }}</van-col>
-                    <van-col span="3">{{ item.name }}</van-col>
+                    <van-col span="5">{{ item.name }}</van-col>
                     <van-col span="3">{{ item.age }}</van-col>
                     <van-col span="3">{{ item.sex }}</van-col>
-                    <van-col span="3">{{ item.phone }}</van-col>
-                    <van-col span="3">{{ item.email }}</van-col>
-                    <van-col span="3">{{ item.presentAddress }}</van-col>
-                    <van-col span="3">{{ item.createTime }}</van-col>
+                    <van-col span="6">{{ item.phone }}</van-col>
+<!--                    <van-col span="3">{{ item.email }}</van-col>-->
+<!--                    <van-col span="3">{{ item.presentAddress }}</van-col>-->
+<!--                    <van-col span="3">{{ item.createTime }}</van-col>-->
                 </van-cell>
             </van-list>
         </van-pull-refresh>
