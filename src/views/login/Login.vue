@@ -1,9 +1,6 @@
 <template>
     <div>
         <div>
-            <vant-demo buttonName="按钮"></vant-demo>
-        </div>
-        <div>
             <van-form @submit="onSubmit">
                 <van-field
                     v-model="username"
@@ -26,32 +23,31 @@
             </van-form>
         </div>
         <div>
-            <vant-demo buttonName="主要按钮"></vant-demo>
+            <van-tag round type="primary" @click="toPath('/register')">账号注册</van-tag>
+            <van-tag round type="primary" @click="toPath('/retrieve')">找回密码</van-tag>
+<!--            <van-tag round type="primary" to="/register">账号注册</van-tag>-->
+<!--            <van-tag round type="primary" to="/retrieve">找回密码</van-tag>-->
         </div>
     </div>
 </template>
 
 <script>
-import VantDemo from "@/components/VantDemo";
+
 export default {
     name: "Login",
-    components: {VantDemo},
     data() {
         return {
             username: '',
-            password: '',
-            buttonObject:{
-                primary:"主要按钮",
-                info:"信息按钮",
-                default:"默认按钮",
-                warning:"警告按钮",
-                danger:"危险按钮",
-            }
+            password: ''
         };
     },
     methods: {
         onSubmit(values) {
             console.log('submit', values);
+            this.$router.push('/homePage');
+        },
+        toPath(param) {
+            this.$router.push(param);
         },
     },
 }
