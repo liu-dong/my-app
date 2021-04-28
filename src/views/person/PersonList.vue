@@ -1,6 +1,14 @@
 <template>
     <div>
-        <h1>人员列表</h1>
+        <van-nav-bar
+            left-arrow
+            left-text="返回"
+            right-text="按钮"
+            title="人员列表"
+            @click-left="onClickLeft"
+            @click-right="onClickRight"
+        />
+        <van-search v-model="value" placeholder="请输入搜索关键词" show-action @search="onSearch"/>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <p>刷新次数: {{ count }}</p>
             <van-list
@@ -272,38 +280,48 @@ export default {
             refreshing: false,
             count: 0,
             pageSize: 5,
+            value: '',
         };
     },
     methods: {
         onLoad() {
             // 异步更新数据
             // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-                this.list = [];
-                // 加载状态结束
-                this.refreshing = false;
+            this.list = [];
+            // 加载状态结束
+            this.refreshing = false;
 
-                for (let i = 0; i < this.pageSize; i++) {
-                    if (i === this.personInfo.data.length){
-                        break;
-                    }
-                    this.list.push(this.personInfo.data[i]);
+            for (let i = 0; i < this.pageSize; i++) {
+                if (i === this.personInfo.data.length) {
+                    break;
                 }
-                this.loading = false;
+                this.list.push(this.personInfo.data[i]);
+            }
+            this.loading = false;
 
-                if (this.list.length >= this.personInfo.data.length) {
-                    this.finished = true;
-                }
+            if (this.list.length >= this.personInfo.data.length) {
+                this.finished = true;
+            }
         },
         onRefresh() {
-                // 清空列表数据
-                this.finished = false;
-                // 重新加载数据
-                // 将 loading 设置为 true，表示处于加载状态
-                this.pageSize += 5;
-                this.loading = true;
-                this.onLoad();
-                this.count++;
-                Toast('刷新成功');
+            // 清空列表数据
+            this.finished = false;
+            // 重新加载数据
+            // 将 loading 设置为 true，表示处于加载状态
+            this.pageSize += 5;
+            this.loading = true;
+            this.onLoad();
+            this.count++;
+            Toast('刷新成功');
+        },
+        onSearch(val) {
+            Toast(val);
+        },
+        onClickLeft() {
+            window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+        },
+        onClickRight() {
+            Toast('按钮');
         },
     },
 }
